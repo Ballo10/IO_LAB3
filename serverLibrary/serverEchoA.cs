@@ -32,38 +32,22 @@ namespace TCPAsynchClasses
         /// <summary>
         ///     Funkcja sprawdzająca dane do "logowania". Dane zapisane w pliku porównywane z danymi przesłanymi przez użytkownika
         /// </summary>
-        /// <param name="s1">Login</param>
-        /// <param name="s2">Hasło</param>
+        /// <param name="login">Login</param>
+        /// <param name="passwd">Hasło</param>
         /// <returns>
         /// True - udane logowanie
         /// False - nieudane logowanie, niepoprawne dane
         /// </returns>
-        private bool checkLogin(string s1, string s2)
+        private bool checkLogin(string login, string passwd)
         {
-            bool r1 = false;
-            bool r2 = false;
-
-            /*if(r1 = dataBase.ContainsKey(s1))
+            bool result = false;
+            string temp1 = login.Replace("\0", string.Empty);
+            string temp2 = passwd.Replace("\0", string.Empty);
+            if (result = dataBase.ContainsKey(login.Replace("\0", string.Empty)))
             {
-
+                result = dataBase[temp1].Equals(temp2);
             }
-*/
-            r1 = dataBase.ContainsKey(s1);
-            r2 = dataBase.
-            return r1 && r2;
-
-            /*string data = File.ReadAllText("test.txt");
-            string[] separator = { " ", "\n" , "\r", "\t"};
-            string[] tab = data.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-
-            for(int i = 0;i<tab.Length;i-=-2)
-            {
-                r1 = tab.GetValue(i).Equals(s1.Replace("\0", string.Empty));
-                r2 = tab.GetValue(i+1).Equals(s2.Replace("\0", string.Empty));
-                if (r1 && r2) break;
-            }
-            return r1 && r2;*/
-
+            return result;
         }
 
         protected override void AcceptClient()
