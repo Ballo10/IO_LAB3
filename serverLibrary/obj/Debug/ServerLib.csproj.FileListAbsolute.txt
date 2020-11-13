@@ -1,0 +1,6 @@
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\bin\Debug\serverLibrary.dll
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\bin\Debug\serverLibrary.pdb
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\obj\Debug\ServerLib.csprojAssemblyReference.cache
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\obj\Debug\ServerLib.csproj.CoreCompileInputs.cache
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\obj\Debug\serverLibrary.dll
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\obj\Debug\serverLibrary.pdb
