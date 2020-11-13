@@ -46,6 +46,7 @@ namespace ServerLib
                 session.SendMessage("Nie udalo sie zalogowac");
                 session.Login = args[1];
                 line = "Nieudane logowanie przez uzytkownika: " + args[1] + " o godzinie: " + time;
+                //zrobic zeby nadpisywalo plik
             }
 
             System.IO.File.WriteAllText("historia.txt", line);
