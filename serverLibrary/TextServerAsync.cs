@@ -32,6 +32,7 @@ namespace ServerLib
             }
 
             commands.Add("login", new LoginCommand(this));
+            commands.Add("strong", new StrongCommand(this));
 
             Console.WriteLine("Started");
         }
