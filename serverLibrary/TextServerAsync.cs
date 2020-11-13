@@ -32,7 +32,8 @@ namespace ServerLib
             }
 
             commands.Add("login", new LoginCommand(this));
-            commands.Add("strong", new StrongCommand(this));
+            commands.Add("silnia", new StrongCommand(this));
+            commands.Add("historia", new LoginHistoryCommand((this)));
 
             Console.WriteLine("Started");
         }

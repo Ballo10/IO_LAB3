@@ -30,13 +30,25 @@ namespace ServerLib
                     success = Server.Database[args[1]].Equals(args[2]);
                 }
             }
+                DateTime thisDay = DateTime.Today;
+                String time = thisDay.ToString();
+            string line = "";
             if (success)
             {
                 session.SendMessage("Udalo sie zalogowac");
                 session.Active = true;
                 session.Login = args[1];
+                line = "Udane logowanie przez uzytkownika: " + args[1] + " o godzinie: " + time;
+                //zrobic zeby nadpisywalo plik
             }
-            else session.SendMessage("Nie udalo sie zalogowac");
+            else
+            {
+                session.SendMessage("Nie udalo sie zalogowac");
+                session.Login = args[1];
+                line = "Nieudane logowanie przez uzytkownika: " + args[1] + " o godzinie: " + time;
+            }
+
+            System.IO.File.WriteAllText("historia.txt", line);
         }
     }
 }
