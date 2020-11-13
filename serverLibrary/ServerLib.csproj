@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Strong.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="LoginCommand.cs" />
     <Compile Include="CommandHandler.cs" />

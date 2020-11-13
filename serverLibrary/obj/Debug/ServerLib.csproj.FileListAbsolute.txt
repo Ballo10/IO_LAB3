@@ -10,3 +10,9 @@ C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\ServerLib.cspro
 C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\ServerLib.csproj.CoreCompileInputs.cache
 C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\serverLibrary.dll
 C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\serverLibrary.pdb
+C:\Users\user\Documents\GitHub\IO_LAB3\serverLibrary\bin\Debug\serverLibrary.dll
+C:\Users\user\Documents\GitHub\IO_LAB3\serverLibrary\bin\Debug\serverLibrary.pdb
+C:\Users\user\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\ServerLib.csprojAssemblyReference.cache
+C:\Users\user\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\ServerLib.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\serverLibrary.dll
+C:\Users\user\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\serverLibrary.pdb
