@@ -132,6 +132,10 @@ namespace ServerLib
                     {
                         commands[args[0]].execute(args, session);
                     }
+                    else
+                    {
+                        session.SendMessage("Zla komenda!");
+                    }
                 }
             }
         }
