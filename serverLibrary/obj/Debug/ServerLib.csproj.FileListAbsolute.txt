@@ -4,3 +4,9 @@ D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\obj\Debug\ServerLib.csp
 D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\obj\Debug\ServerLib.csproj.CoreCompileInputs.cache
 D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\obj\Debug\serverLibrary.dll
 D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\serverLibrary\obj\Debug\serverLibrary.pdb
+C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\bin\Debug\serverLibrary.dll
+C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\bin\Debug\serverLibrary.pdb
+C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\ServerLib.csprojAssemblyReference.cache
+C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\ServerLib.csproj.CoreCompileInputs.cache
+C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\serverLibrary.dll
+C:\Users\Kacper\Documents\GitHub\IO_LAB3\serverLibrary\obj\Debug\serverLibrary.pdb

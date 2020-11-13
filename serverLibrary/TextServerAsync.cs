@@ -154,7 +154,7 @@ namespace ServerLib
 
                 ProcessClientDelegate transmissionDelegate = new ProcessClientDelegate(ProcessClient);
 
-                Session session = new Session(tcpClient);
+                Session session = new Session(this,tcpClient);
 
                 transmissionDelegate.BeginInvoke(session, ProcessClientCallback, session);
 

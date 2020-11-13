@@ -11,14 +11,22 @@ namespace ServerLib
     {
         private TcpClient tcpClient;
         private NetworkStream netStream;
+        private TextServerAsync server;
 
         private bool active = false;
         private string login = "";
 
-        public Session(TcpClient tcpClient)
+        public Session(TextServerAsync ts, TcpClient tcpClient)
         {
             this.tcpClient = tcpClient;
+            server = ts;
             netStream = tcpClient.GetStream();
+        }
+
+        public void SendMessage(string message)
+        {
+            byte[] finalMessage = Encoding.UTF8.GetBytes(message+"\r\n");
+            this.netStream.Write(finalMessage,0,finalMessage.Length);
         }
 
         public TcpClient TcpClient { get => tcpClient; }
