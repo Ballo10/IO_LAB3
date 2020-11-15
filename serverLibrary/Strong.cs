@@ -20,9 +20,9 @@ namespace ServerLib
                 session.SendMessage("Bledne dane");
                 return;
             }
-            int value = 0;
-            int result = 1;
-            if (Int32.TryParse(args[1], out value))
+            uint value = 0;
+            uint result = 1;
+            if (UInt32.TryParse(args[1], out value))
             {
                 for (; value > 1; value--)
                 {

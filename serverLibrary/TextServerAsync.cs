@@ -22,7 +22,7 @@ namespace ServerLib
         public TextServerAsync(IPAddress IP, int port) : base(IP, port)
         {
             ///Wczytanie bazy danych z pliku
-            string data = File.ReadAllText("test.txt");
+            string data = File.ReadAllText("login.txt");
             string[] separator = { " ", "\n", "\r", "\t" };
             string[] tab = data.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
@@ -33,7 +33,9 @@ namespace ServerLib
 
             commands.Add("login", new LoginCommand(this));
             commands.Add("silnia", new StrongCommand(this));
-            commands.Add("historia", new LoginHistoryCommand((this)));
+            commands.Add("historia", new LoginHistoryCommand(this));
+            commands.Add("register", new RegisterCommand(this));
+
 
             Console.WriteLine("Started");
         }
