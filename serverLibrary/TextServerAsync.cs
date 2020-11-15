@@ -35,6 +35,7 @@ namespace ServerLib
             commands.Add("silnia", new StrongCommand(this));
             commands.Add("historia", new LoginHistoryCommand(this));
             commands.Add("register", new RegisterCommand(this));
+            commands.Add("help", new HelpCommand(this));
 
 
             Console.WriteLine("Started");
@@ -171,6 +172,7 @@ namespace ServerLib
         }
 
         public Dictionary<string, string> Database { get => database; }
+        public Dictionary<string, CommandHandler> Commands { get => commands;  }
 
     }
 }

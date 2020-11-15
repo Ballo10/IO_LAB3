@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelpCommand.cs" />
     <Compile Include="RegisterCommand.cs" />
     <Compile Include="LoginHistory.cs" />
     <Compile Include="Strong.cs" />

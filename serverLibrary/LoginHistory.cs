@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServerLib
 {
-    class LoginHistoryCommand : CommandHandler
+    public class LoginHistoryCommand : CommandHandler
     {
         public LoginHistoryCommand(TextServerAsync server) : base(server)
         {
