@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ServerLib;
 
+/// <summary>
+/// Klasa abstrakcyjna, ktora sluzy implementacji kolejnych polecen
+/// </summary>
 namespace ServerLib
 {
     public abstract class CommandHandler

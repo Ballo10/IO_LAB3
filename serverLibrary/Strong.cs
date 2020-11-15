@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Klasa, ktora pozwala obliczyc silnie
+/// </summary>
+
 namespace ServerLib
 {
 

@@ -5,6 +5,10 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Klasa odpowiedzialna za logowanie uzytkownikow i zapisywanie informacji o zalogowaniu do pliku historia.txt
+/// </summary>
+
 namespace ServerLib
 {
     public class LoginCommand : CommandHandler
@@ -46,14 +50,14 @@ namespace ServerLib
                 session.Active = true;
                 session.Login = args[1];
                 line = "Udane logowanie przez uzytkownika: " + args[1] + " o godzinie: " + time+'\n';
-                //zrobic zeby nadpisywalo plik
+               
             }
             else
             {
                 session.SendMessage("Nie udalo sie zalogowac");
                 session.Login = args[1];
                 line = "Nieudane logowanie przez uzytkownika: " + args[1] + " o godzinie: " + time+'\n';
-                //zrobic zeby nadpisywalo plik
+                
             }
 
             System.IO.File.AppendAllText("historia.txt", line);

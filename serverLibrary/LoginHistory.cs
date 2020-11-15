@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Klasa odpowiedzialna za wyswietlenie historii logowania
+/// </summary>
 namespace ServerLib
 {
     public class LoginHistoryCommand : CommandHandler
@@ -20,9 +23,9 @@ namespace ServerLib
                 session.SendMessage("Bledne dane");
                 return;
             }
-            //wyswietlenie pliku
+           
             string data = File.ReadAllText("historia.txt");
-           // string data = File.ReadAllText("test.txt");
+           
            
             
             

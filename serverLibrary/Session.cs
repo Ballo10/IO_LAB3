@@ -5,6 +5,10 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Klasa przechowuje informacje o sesji i pozwala na latwe przesylanie komunikatow.
+/// </summary>
+
 namespace ServerLib
 {
     public class Session

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Klasa, ktora pozwala na rejestacje klienta
+/// </summary>
+
 namespace ServerLib
 {
     public class RegisterCommand : CommandHandler
