@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ServerLib
 {
-    public class LoginCommand : CommandHandler
+    public class LoginCommand : Command
     {
 
         public LoginCommand(TextServerAsync server) : base(server)
@@ -21,43 +21,46 @@ namespace ServerLib
 
         public override void execute(string[] args, Session session)
         {
-            bool success = false;
-            if(args.Length!=3)
+            if (args.Length != 2)
             {
                 session.SendMessage("Bledne dane");
                 return;
             }
-            if(session.Active)
+            if (session.Active)
             {
                 session.SendMessage("Jestes juz zalogowany");
+                return;
             }
-            lock(Server.Database)
+
+            bool success = false;
+
+            lock (Server.Database)
             {
-                if (success = Server.Database.ContainsKey(args[1]))
+                if (Server.Database.ContainsKey(args[0]))
                 {
-                    success = Server.Database[args[1]].Equals(args[2]);
+                    success = Server.Database[args[0]].Equals(args[1]);
                 }
             }
 
 
             DateTime thisDay = DateTime.UtcNow.AddHours(1);
-                
+
             String time = thisDay.ToString("dd-MM-yyyy HH:mm:ss");
             string line = "";
             if (success)
             {
                 session.SendMessage("Udalo sie zalogowac");
                 session.Active = true;
-                session.Login = args[1];
-                line = "Udane logowanie przez uzytkownika: " + args[1] + " o godzinie: " + time+'\n';
-               
+                session.Login = args[0];
+                line = "Udane logowanie przez uzytkownika: " + args[0] + " o godzinie: " + time + '\n';
+
             }
             else
             {
                 session.SendMessage("Nie udalo sie zalogowac");
-                session.Login = args[1];
-                line = "Nieudane logowanie przez uzytkownika: " + args[1] + " o godzinie: " + time+'\n';
-                
+                session.Login = args[0];
+                line = "Nieudane logowanie przez uzytkownika: " + args[0] + " o godzinie: " + time + '\n';
+
             }
 
             System.IO.File.AppendAllText("historia.txt", line);

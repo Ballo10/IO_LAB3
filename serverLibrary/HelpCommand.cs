@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 /// </summary>
 namespace ServerLib
 {
-    public class HelpCommand : CommandHandler
+    public class HelpCommand : Command
     {
         public HelpCommand(TextServerAsync server) : base(server)
         {

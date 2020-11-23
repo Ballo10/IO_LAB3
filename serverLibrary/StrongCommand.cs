@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace ServerLib
 {
 
-    public class StrongCommand : CommandHandler
+    public class StrongCommand : Command
     {
         public StrongCommand(TextServerAsync server) : base(server)
         {
@@ -19,20 +19,20 @@ namespace ServerLib
 
         public override void execute(string[] args, Session session)
         {
-            if (args.Length != 2)
+            if (args.Length != 1)
             {
                 session.SendMessage("Bledne dane");
                 return;
             }
             uint value = 0;
             uint result = 1;
-            if (UInt32.TryParse(args[1], out value))
+            if (UInt32.TryParse(args[0], out value))
             {
                 for (; value > 1; value--)
                 {
                     result = result * value;
                 }
-                session.SendMessage("Wynik: "+result);
+                session.SendMessage("Wynik: " + result);
             }
             else
             {

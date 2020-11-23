@@ -13,9 +13,9 @@ namespace ServerLib
 {
     public class TextServerAsync : TextServer
     {
-        private Dictionary<string, string> database = new Dictionary<string,string>();
+        private Dictionary<string, string> database = new Dictionary<string, string>();
 
-        private Dictionary<string, CommandHandler> commands = new Dictionary<string, CommandHandler>();
+        private Dictionary<string, Command> commands = new Dictionary<string, Command>();
 
         public delegate void ProcessClientDelegate(Session session);
 
@@ -26,7 +26,7 @@ namespace ServerLib
             string[] separator = { " ", "\n", "\r", "\t" };
             string[] tab = data.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
-            for (int i = 0; i < tab.Length; i+=2)
+            for (int i = 0; i < tab.Length; i += 2)
             {
                 database.Add(tab[i], tab[i + 1]);
             }
@@ -37,31 +37,8 @@ namespace ServerLib
             commands.Add("register", new RegisterCommand(this));
             commands.Add("help", new HelpCommand(this));
 
-
             Console.WriteLine("Started");
         }
-        /// <summary>
-        ///     Funkcja sprawdzająca dane do "logowania". Dane zapisane w pliku porównywane z danymi przesłanymi przez użytkownika
-        /// </summary>
-        /// <param name="login">Login</param>
-        /// <param name="passwd">Hasło</param>
-        /// <returns>
-        /// True - udane logowanie
-        /// False - nieudane logowanie, niepoprawne dane
-        /// </returns>
-        private bool checkLogin(string login, string passwd)
-        {
-            bool result = false;
-            string temp1 = login.Replace("\0", string.Empty);
-            string temp2 = passwd.Replace("\0", string.Empty);
-            if (result = database.ContainsKey(login.Replace("\0", string.Empty)))
-            {
-                result = database[temp1].Equals(temp2);
-            }
-            return result;
-        }
-
- 
 
         private void ProcessClient(Session session)
         {
@@ -69,7 +46,7 @@ namespace ServerLib
 
             string stringBuffer = "";
 
-            for (;;)
+            for (; ; )
             {
                 int readBytes = session.NetStream.Read(buffer, 0, BufferSize);
                 stringBuffer += Encoding.UTF8.GetString(buffer, 0, readBytes);
@@ -84,7 +61,10 @@ namespace ServerLib
 
                     if (args.Length >= 1 && commands.ContainsKey(args[0]))
                     {
-                        commands[args[0]].execute(args, session);
+                        string[] trimmedArgs = new string[args.Length - 1];
+                        Array.Copy(args, 1, trimmedArgs, 0, trimmedArgs.Length);
+
+                        commands[args[0]].execute(trimmedArgs, session);
                     }
                     else
                     {
@@ -92,12 +72,6 @@ namespace ServerLib
                     }
                 }
             }
-        }
-        private void ProcessClientCallback(IAsyncResult ar)
-        {
-            Session session = (Session)ar.AsyncState;
-            session.NetStream.Close();
-            session.TcpClient.Close();
         }
 
         public override void Start()
@@ -108,19 +82,17 @@ namespace ServerLib
             while (true)
             {
                 TcpClient tcpClient = TcpListener.AcceptTcpClient();
+                Session session = new Session(this, tcpClient);
 
-                ProcessClientDelegate transmissionDelegate = new ProcessClientDelegate(ProcessClient);
-
-                Session session = new Session(this,tcpClient);
-
-                transmissionDelegate.BeginInvoke(session, ProcessClientCallback, session);
-
-                //var task = Task.Run(() => transmissionDelegate.Invoke(netStream));
+                Task.Run(() =>
+                {
+                    this.ProcessClient(session);
+                });
             }
         }
 
         public Dictionary<string, string> Database { get => database; }
-        public Dictionary<string, CommandHandler> Commands { get => commands;  }
+        public Dictionary<string, Command> Commands { get => commands; }
 
     }
 }

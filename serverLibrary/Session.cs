@@ -13,9 +13,10 @@ namespace ServerLib
 {
     public class Session
     {
+        private TextServerAsync server;
+
         private TcpClient tcpClient;
         private NetworkStream netStream;
-        private TextServerAsync server;
 
         private bool active = false;
         private string login = "";

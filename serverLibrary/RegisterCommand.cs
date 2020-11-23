@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ServerLib
 {
-    public class RegisterCommand : CommandHandler
+    public class RegisterCommand : Command
     {
         public RegisterCommand(TextServerAsync server) : base(server)
         {
@@ -18,18 +18,18 @@ namespace ServerLib
         }
         public override void execute(string[] args, Session session)
         {
-            bool success = false;
-            if(args.Length!=3)
+            if (args.Length != 2)
             {
                 session.SendMessage("Bledne dane");
                 return;
             }
+
             lock (Server.Database)
             {
-                if (!Server.Database.ContainsKey(args[1]))
+                if (!Server.Database.ContainsKey(args[0]))
                 {
-                    Server.Database.Add(args[1], args[2]);
-                    System.IO.File.AppendAllText("login.txt", args[1]+" "+args[2]+'\n');
+                    Server.Database.Add(args[0], args[1]);
+                    System.IO.File.AppendAllText("login.txt", args[0] + " " + args[1] + '\n');
                     session.SendMessage("Pomyslnie zarejestrowano uzytkownika");
                 }
                 else

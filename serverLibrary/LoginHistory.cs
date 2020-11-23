@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 /// </summary>
 namespace ServerLib
 {
-    public class LoginHistoryCommand : CommandHandler
+    public class LoginHistoryCommand : Command
     {
         public LoginHistoryCommand(TextServerAsync server) : base(server)
         {
@@ -18,19 +18,15 @@ namespace ServerLib
 
         public override void execute(string[] args, Session session)
         {
-            if (args.Length > 1)
+            if (args.Length > 0)
             {
                 session.SendMessage("Bledne dane");
                 return;
             }
-           
+
             string data = File.ReadAllText("historia.txt");
-           
-           
-            
-            
-                session.SendMessage(data);
-            
+
+            session.SendMessage(data);
         }
     }
 }

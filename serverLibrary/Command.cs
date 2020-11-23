@@ -11,7 +11,7 @@ using ServerLib;
 /// </summary>
 namespace ServerLib
 {
-    public abstract class CommandHandler
+    public abstract class Command
     {
 
         #region Fields
@@ -22,7 +22,7 @@ namespace ServerLib
 
         #region Constructors
 
-        public CommandHandler(TextServerAsync server)
+        public Command(TextServerAsync server)
         {
             this.server = server;
         }
