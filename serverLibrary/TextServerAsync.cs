@@ -38,6 +38,7 @@ namespace ServerLib
             commands.Add("help", new HelpCommand(this));
             commands.Add("logout", new LogoutCommand(this));
             commands.Add("chpwd", new ChangePasswordCommand(this));
+            commands.Add("chname", new ChangeUserNameCommand(this));
 
             Console.WriteLine("Started");
         }
