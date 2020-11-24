@@ -36,6 +36,8 @@ namespace ServerLib
             commands.Add("historia", new LoginHistoryCommand(this));
             commands.Add("register", new RegisterCommand(this));
             commands.Add("help", new HelpCommand(this));
+            commands.Add("logout", new LogoutCommand(this));
+            commands.Add("chpwd", new ChangePasswordCommand(this));
 
             Console.WriteLine("Started");
         }

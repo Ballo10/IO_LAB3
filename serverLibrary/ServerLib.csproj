@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangePasswordCommand.cs" />
     <Compile Include="HelpCommand.cs" />
+    <Compile Include="LogoutCommand.cs" />
     <Compile Include="RegisterCommand.cs" />
     <Compile Include="LoginHistory.cs" />
     <Compile Include="StrongCommand.cs" />
