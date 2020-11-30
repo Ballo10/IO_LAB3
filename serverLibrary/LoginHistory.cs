@@ -31,14 +31,17 @@ namespace ServerLib
 
                 using (var sr = new StreamReader("historia.txt"))
                 {
-                    
+
 
 
                     //string data = (sr, Encoding.Unicode);
-                   // string[] separator = { " ", "\n", "\r", "\t" };
-                   // string[] tab = data.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                   // session.SendMessage(data);
-                    session.SendMessage(sr.ReadLine());
+                    // string[] separator = { " ", "\n", "\r", "\t" };
+                    // string[] tab = data.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                    // session.SendMessage(data);
+                    foreach (var line in File.ReadLines("historia.txt"))
+                    {
+                        session.SendMessage(line);
+                    }
                 }
             }
             catch (IOException e)
