@@ -13,7 +13,7 @@ namespace TestSet
         {
             try
             {
-                ServerLib.TextServerAsync server = new ServerLib.TextServerAsync(IPAddress.Parse("127.0.0.1"), 4000);
+                ServerLib.TextServerAsync server = new ServerLib.TextServerAsync(IPAddress.Parse("127.0.0.1"), 4);
                 Assert.Fail();
             }
             catch (Exception e)

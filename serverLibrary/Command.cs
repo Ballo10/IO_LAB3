@@ -31,7 +31,9 @@ namespace ServerLib
 
         #region Functions
 
+#pragma warning disable IDE1006 // Style nazewnictwa
         public abstract void execute(string[] args, Session session);
+#pragma warning restore IDE1006 // Style nazewnictwa
 
         #endregion
 
