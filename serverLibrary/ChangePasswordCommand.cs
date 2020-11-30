@@ -33,24 +33,34 @@ namespace ServerLib
             }
             if(success)
             {
-
-                foreach(var line in File.ReadLines("login.txt"))
+                try
                 {
-                    string[] separators = { " ", "\n", "\r", "\t" };
-                    string[] temp = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                    if(temp[0].Equals(session.Login))
+                    foreach (var line in File.ReadLines("login.txt"))
                     {
-                        System.IO.File.AppendAllText("templogin.txt",session.Login + ' ' + args[1] + '\n');
+                        string[] separators = { " ", "\n", "\r", "\t" };
+                        string[] temp = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                        if (temp[0].Equals(session.Login))
+                        {
+                            System.IO.File.AppendAllText("templogin.txt", session.Login + ' ' + args[1] + '\n');
+                        }
+                        else
+                        {
+                            System.IO.File.AppendAllText("templogin.txt", line + '\n');
+                        }
                     }
-                    else
-                    {
-                        System.IO.File.AppendAllText("templogin.txt", line + '\n');
-                    }
-                }
 
-                File.Delete("login.txt");
-                File.Move("templogin.txt", "login.txt");
-                session.SendMessage("Pomyslnie zmieniono haslo");
+                    File.Delete("login.txt");
+                    File.Move("templogin.txt", "login.txt");
+                    session.SendMessage("Password changed successfully");
+                }
+                
+                     catch (IOException e)
+                {
+                    session.SendMessage("The file could not be read");
+                    File.Create("login.txt");
+                    //Console.WriteLine(e.Message);
+                }
+            
             }
         }
     }

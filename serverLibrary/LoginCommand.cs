@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -63,7 +64,17 @@ namespace ServerLib
 
             }
 
-            System.IO.File.AppendAllText("historia.txt", line);
+            try
+            {
+                System.IO.File.AppendAllText("historia.txt", line);
+
+            }
+            catch (IOException e)
+            {
+                session.SendMessage("The file could not be read");
+                File.Create("login.txt");
+                //Console.WriteLine(e.Message);
+            }
         }
     }
 }

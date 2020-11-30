@@ -24,9 +24,30 @@ namespace ServerLib
                 return;
             }
 
-            string data = File.ReadAllText("historia.txt");
+            //string data = File.ReadAllText("historia.txt");
 
-            session.SendMessage(data);
+            try
+            {
+
+                using (var sr = new StreamReader("historia.txt"))
+                {
+                    
+
+
+                    //string data = (sr, Encoding.Unicode);
+                   // string[] separator = { " ", "\n", "\r", "\t" };
+                   // string[] tab = data.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                   // session.SendMessage(data);
+                    session.SendMessage(sr.ReadLine());
+                }
+            }
+            catch (IOException e)
+            {
+                session.SendMessage("The file could not be read");
+                File.Create("historia.txt");
+                //Console.WriteLine(e.Message);
+            }
+            //session.SendMessage(data);
         }
     }
 }

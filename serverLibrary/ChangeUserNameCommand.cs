@@ -42,25 +42,34 @@ namespace ServerLib
 
             if (success)
             {
-
-                foreach (var line in File.ReadLines("login.txt"))
+                try
                 {
-                    string[] separators = { " ", "\n", "\r", "\t" };
-                    string[] temp = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                    if (temp[0].Equals(session.Login))
+                    foreach (var line in File.ReadLines("login.txt"))
                     {
-                        session.Login = args[0];
-                        System.IO.File.AppendAllText("templogin.txt", session.Login + ' ' + args[1] + '\n');
+                        string[] separators = { " ", "\n", "\r", "\t" };
+                        string[] temp = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                        if (temp[0].Equals(session.Login))
+                        {
+                            session.Login = args[0];
+                            System.IO.File.AppendAllText("templogin.txt", session.Login + ' ' + args[1] + '\n');
+                        }
+                        else
+                        {
+                            System.IO.File.AppendAllText("templogin.txt", line + '\n');
+                        }
                     }
-                    else
-                    {
-                        System.IO.File.AppendAllText("templogin.txt", line + '\n');
-                    }
+
+                    File.Delete("login.txt");
+                    File.Move("templogin.txt", "login.txt");
+                    session.SendMessage("User name changed successfully");
                 }
 
-                File.Delete("login.txt");
-                File.Move("templogin.txt", "login.txt");
-                session.SendMessage("Pomyslnie zmieniono nazwe uzytkownika");
+                catch (IOException e)
+                {
+                    session.SendMessage("The file could not be read");
+                    File.Create("login.txt");
+                    //Console.WriteLine(e.Message);
+                }
             }
         }
     }
