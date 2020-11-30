@@ -23,12 +23,12 @@ namespace ServerLib
         {
             if (args.Length != 2)
             {
-                session.SendMessage("Bledne dane");
+                session.SendMessage("Incorrect data");
                 return;
             }
             if (session.Active)
             {
-                session.SendMessage("Jestes juz zalogowany");
+                session.SendMessage("You are already logged in ");
                 return;
             }
 
@@ -49,17 +49,17 @@ namespace ServerLib
             string line = "";
             if (success)
             {
-                session.SendMessage("Udalo sie zalogowac");
+                session.SendMessage("Successful login");
                 session.Active = true;
                 session.Login = args[0];
-                line = "Udane logowanie przez uzytkownika: " + args[0] + " o godzinie: " + time + '\n';
+                line = "Successful user login: " + args[0] + " at: " + time + '\n';
 
             }
             else
             {
-                session.SendMessage("Nie udalo sie zalogowac");
+                session.SendMessage("Login failed");
                 session.Login = args[0];
-                line = "Nieudane logowanie przez uzytkownika: " + args[0] + " o godzinie: " + time + '\n';
+                line = "Failed user login: " + args[0] + " at: " + time + '\n';
 
             }
 

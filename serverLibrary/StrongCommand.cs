@@ -21,7 +21,7 @@ namespace ServerLib
         {
             if (args.Length != 1)
             {
-                session.SendMessage("Bledne dane");
+                session.SendMessage("Incorrect data");
                 return;
             }
             uint value = 0;
@@ -32,11 +32,11 @@ namespace ServerLib
                 {
                     result = result * value;
                 }
-                session.SendMessage("Wynik: " + result);
+                session.SendMessage("Result: " + result);
             }
             else
             {
-                session.SendMessage("Bledne dane");
+                session.SendMessage("Incorrect data");
                 return;
             }
         }

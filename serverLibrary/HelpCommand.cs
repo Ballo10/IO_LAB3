@@ -16,7 +16,7 @@ namespace ServerLib
         }
         public override void execute(string[] args, Session session)
         {
-            session.SendMessage("Lista komend:\n");
+            session.SendMessage("Command list:\n");
             for(int i=0;i<Server.Commands.Count;i++)
             {
                 session.SendMessage(Server.Commands.ElementAt(i).Key);

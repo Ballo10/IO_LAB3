@@ -20,7 +20,7 @@ namespace ServerLib
         {
             if (args.Length != 2)
             {
-                session.SendMessage("Bledne dane");
+                session.SendMessage("Incorrect data");
                 return;
             }
 
@@ -30,11 +30,11 @@ namespace ServerLib
                 {
                     Server.Database.Add(args[0], args[1]);
                     System.IO.File.AppendAllText("login.txt", args[0] + " " + args[1] + '\n');
-                    session.SendMessage("Pomyslnie zarejestrowano uzytkownika");
+                    session.SendMessage("User successfully registered");
                 }
                 else
                 {
-                    session.SendMessage("Uzytkownik juz istnieje w bazie");
+                    session.SendMessage("The user already exists in the database");
                 }
             }
         }

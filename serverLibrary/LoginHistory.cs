@@ -20,7 +20,7 @@ namespace ServerLib
         {
             if (args.Length > 0)
             {
-                session.SendMessage("Bledne dane");
+                session.SendMessage("Incorrect data");
                 return;
             }
 

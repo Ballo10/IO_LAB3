@@ -16,18 +16,18 @@ namespace ServerLib
         {
             if (args.Length > 0)
             {
-                session.SendMessage("Bledne dane");
+                session.SendMessage("Incorrect data");
                 return;
             }
             if(session.Active)
             {
                 session.Active = false;
                 session.Login = "";
-                session.SendMessage("Wylogowano pomyslnie");
+                session.SendMessage("Successfully logged out ");
             }
             else
             {
-                session.SendMessage("Nie mozna sie wylogowac. Uzytkownik niezalogowany.");
+                session.SendMessage("Unable to log out. User not logged in.");
             }
         }
     }

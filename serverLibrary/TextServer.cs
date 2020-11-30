@@ -42,7 +42,7 @@ namespace ServerLib
             if (!checkPort())
             {
                 Port = 8000;
-                throw new Exception("błędna wartość portu, ustawiam port na 8000");
+                throw new Exception("wrong port value, I set the port to 8000");
             }
         }
         #endregion
@@ -77,7 +77,7 @@ namespace ServerLib
             set
             {
                 if (!running) ipAddress = value;
-                else throw new Exception("nie można zmienić adresu IP kiedy serwer jest uruchomiony");
+                else throw new Exception("the IP address cannot be changed while the server is running");
             }
         }
         /// <summary>
@@ -92,12 +92,12 @@ namespace ServerLib
                 int tmp = port;
 
                 if (!running) port = value;
-                else throw new Exception("nie można zmienić portu kiedy serwer jest uruchomiony");
+                else throw new Exception("the port cannot be changed while the server is running");
 
                 if (!checkPort())
                 {
                     port = tmp;
-                    throw new Exception("błędna wartość portu");
+                    throw new Exception("wrong port value");
                 }
             }
         }
@@ -112,11 +112,11 @@ namespace ServerLib
             {
                 if (value < 0 || value > 1024 * 1024 * 64)
                 {
-                    throw new Exception("błędny rozmiar pakietu");
+                    throw new Exception("wrong package size");
                 }
 
                 if (!running) bufferSize = value;
-                else throw new Exception("nie można zmienić rozmiaru pakietu kiedy serwer jest uruchomiony");
+                else throw new Exception("the packet size cannot be changed while the server is running");
             }
         }
 
