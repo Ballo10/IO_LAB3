@@ -28,7 +28,7 @@ namespace ServerLib
                 if (Server.Database[session.Login].Equals(args[0]))
                 {
                     success = args[1].Equals(args[2]);
-                    if(success) Server.Database[args[0]] = args[1];
+                    if(success) Server.Database[session.Login] = args[1];
                 }
             }
             if(success)
