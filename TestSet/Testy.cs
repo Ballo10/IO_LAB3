@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using ServerLib;
 
 namespace TestSet
 {
@@ -9,29 +9,47 @@ namespace TestSet
     public class Testy
     {
         [TestMethod]
-        public void TestWrongPortNumber()
+        public void TestValidPortNumber()
         {
-            try
-            {
-                ServerLib.TextServerAsync server = new ServerLib.TextServerAsync(IPAddress.Parse("127.0.0.1"), 4);
-                Assert.Fail();
-            }
-            catch (Exception e)
-            {
+            TextServerAsync server = new TextServerAsync(IPAddress.Parse("127.0.0.1"), 4000);
+        }
 
-            }
-        }
-       /* [TestMethod]
-        public void TestMethod2()
-        {
-        }
         [TestMethod]
-        public void TestMethod3()
+        [ExpectedException(typeof(Exception))]
+        public void TestInvalidPortNumber()
         {
+            TextServerAsync server = new TextServerAsync(IPAddress.Parse("127.0.0.1"), 4);
         }
+
         [TestMethod]
-        public void TestMethod4()
+        public void TestChangeIP()
         {
-        }*/
+            TextServerAsync server = new TextServerAsync(IPAddress.Parse("127.0.0.1"), 4000);
+            server.IPAddress = IPAddress.Parse("127.0.0.1");
+        }
+
+        [TestMethod]
+        public void TestChangeBufferSize()
+        {
+            TextServerAsync server = new TextServerAsync(IPAddress.Parse("127.0.0.1"), 4000);
+            server.BufferSize = 2048;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void TestNegativeChangeBufferSize()
+        {
+            TextServerAsync server = new TextServerAsync(IPAddress.Parse("127.0.0.1"), 4000);
+            server.BufferSize = -50;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void TestHugeChangeBufferSize()
+        {
+            TextServerAsync server = new TextServerAsync(IPAddress.Parse("127.0.0.1"), 4000);
+            server.BufferSize = 1000000000;
+        }
+
     }
 }
