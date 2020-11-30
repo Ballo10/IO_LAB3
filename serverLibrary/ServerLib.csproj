@@ -46,7 +46,7 @@
     <Compile Include="HelpCommand.cs" />
     <Compile Include="LogoutCommand.cs" />
     <Compile Include="RegisterCommand.cs" />
-    <Compile Include="LoginHistory.cs" />
+    <Compile Include="LoginHistoryCommand.cs" />
     <Compile Include="StrongCommand.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="LoginCommand.cs" />
