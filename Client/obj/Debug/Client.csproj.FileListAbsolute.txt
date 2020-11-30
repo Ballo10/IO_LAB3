@@ -1,0 +1,7 @@
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\bin\Debug\Client.exe.config
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\bin\Debug\Client.exe
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\bin\Debug\Client.pdb
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\obj\Debug\Client.csprojAssemblyReference.cache
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\obj\Debug\Client.exe
+D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\obj\Debug\Client.pdb
