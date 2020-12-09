@@ -36,6 +36,7 @@ namespace ServerLib
             commands.Add("history", new LoginHistoryCommand(this));
             commands.Add("register", new RegisterCommand(this));
             commands.Add("help", new HelpCommand(this));
+            commands.Add("support", new SupportCommand(this));
             commands.Add("logout", new LogoutCommand(this));
             commands.Add("chpwd", new ChangePasswordCommand(this));
             commands.Add("chname", new ChangeUserNameCommand(this));
@@ -71,7 +72,7 @@ namespace ServerLib
                     }
                     else
                     {
-                        session.SendMessage("xxxxxxx");
+                        session.SendMessage("Invalid command. Type support for more information");
                     }
                 }
             }
