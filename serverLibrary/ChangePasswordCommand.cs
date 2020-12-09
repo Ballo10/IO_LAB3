@@ -17,7 +17,8 @@ namespace ServerLib
         {
             if(args.Length != 3)
             {
-                session.SendMessage("Incorrect data");
+                //session.SendMessage("Incorrect data");
+                session.SendMessage("Usage chpwd [old_password] [new_password] [new_password]");
                 return;
             }
 

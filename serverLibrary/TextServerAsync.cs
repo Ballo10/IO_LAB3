@@ -71,7 +71,7 @@ namespace ServerLib
                     }
                     else
                     {
-                        session.SendMessage("Incorrect command");
+                        session.SendMessage("xxxxxxx");
                     }
                 }
             }

@@ -5,3 +5,10 @@ D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\obj\Debug\Client.csprojAssembl
 D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\obj\Debug\Client.exe
 D:\Plikipulpit\Szkola\Studia\S5\IO\Lab\git\Client\obj\Debug\Client.pdb
+C:\Users\user\Documents\GitHub\IO_LAB3\Client\bin\Debug\Client.exe.config
+C:\Users\user\Documents\GitHub\IO_LAB3\Client\bin\Debug\Client.exe
+C:\Users\user\Documents\GitHub\IO_LAB3\Client\bin\Debug\Client.pdb
+C:\Users\user\Documents\GitHub\IO_LAB3\Client\obj\Debug\Client.csprojAssemblyReference.cache
+C:\Users\user\Documents\GitHub\IO_LAB3\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\IO_LAB3\Client\obj\Debug\Client.exe
+C:\Users\user\Documents\GitHub\IO_LAB3\Client\obj\Debug\Client.pdb

@@ -24,7 +24,8 @@ namespace ServerLib
         {
             if (args.Length != 2)
             {
-                session.SendMessage("Incorrect data");
+                //session.SendMessage("Incorrect data");
+                session.SendMessage("Usage login [login] [password]");
                 return;
             }
             if (session.Active)

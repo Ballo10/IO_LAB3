@@ -21,7 +21,8 @@ namespace ServerLib
         {
             if (args.Length != 1)
             {
-                session.SendMessage("Incorrect data");
+                // session.SendMessage("Incorrect data");
+                session.SendMessage("Strong [number]");
                 return;
             }
             uint value = 0;
@@ -36,7 +37,7 @@ namespace ServerLib
             }
             else
             {
-                session.SendMessage("Incorrect data");
+                session.SendMessage("Strong [number]");
                 return;
             }
         }

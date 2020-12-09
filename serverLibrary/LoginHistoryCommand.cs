@@ -20,7 +20,8 @@ namespace ServerLib
         {
             if (args.Length > 0)
             {
-                session.SendMessage("Incorrect data");
+                //session.SendMessage("Incorrect data");
+                session.SendMessage("Usage history");
                 return;
             }
 
