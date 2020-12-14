@@ -30,11 +30,13 @@ namespace ServerLib
 
         public void SendMessage(string message)
         {
-            byte[] finalMessage = Encoding.UTF8.GetBytes(message+"\r\n");
-            this.netStream.Write(finalMessage,0,finalMessage.Length);
+            lock (this.netStream)
+            {
+                byte[] finalMessage = Encoding.UTF8.GetBytes(message + "\r\n");
+                this.netStream.Write(finalMessage, 0, finalMessage.Length);
+            }
         }
 
-        public TcpClient TcpClient { get => tcpClient; }
         public NetworkStream NetStream { get => netStream; }
         public bool Active { get => active; set => active = value; }
         public string Login { get => login; set => login = value; }

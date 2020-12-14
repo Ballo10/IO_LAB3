@@ -70,6 +70,9 @@ namespace ServerLib
 
                         commands[args[0]].execute(trimmedArgs, session);
                     }
+                    else if (cmd.Equals("KA")) {
+                        
+                    }
                     else
                     {
                         session.SendMessage("Invalid command. Type support for more information");
@@ -86,11 +89,19 @@ namespace ServerLib
             while (true)
             {
                 TcpClient tcpClient = TcpListener.AcceptTcpClient();
+                tcpClient.ReceiveTimeout = 10000;
+
                 Session session = new Session(this, tcpClient);
 
                 Task.Run(() =>
                 {
-                    this.ProcessClient(session);
+                    try
+                    {
+                        this.ProcessClient(session);
+                    }
+                    catch (SystemException) {
+                        
+                    }
                 });
             }
         }

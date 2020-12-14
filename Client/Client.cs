@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Client
@@ -31,13 +32,20 @@ namespace Client
                 this.StartReadThread();
             });
 
+            Task keepAliveThread = Task.Run(() => {
+                this.StartKeepAliveThread();
+            });
+
             for (; ; )
             {
                 string message = Console.ReadLine();
 
                 if (!message.Equals("quit"))
                 {
-                    this.SendMessage(message);
+                    lock (this.netStream)
+                    {
+                        this.SendMessage(message);
+                    }
                 }
                 else break;
             }
@@ -66,6 +74,18 @@ namespace Client
 
                     Console.WriteLine(message);
                 }
+            }
+        }
+
+        private void StartKeepAliveThread()
+        {
+            for (; ; )
+            {
+                lock (this.netStream)
+                {
+                    this.SendMessage("KA");
+                }
+                Thread.Sleep(5000);
             }
         }
 
