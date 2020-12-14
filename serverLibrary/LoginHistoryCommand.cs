@@ -21,27 +21,31 @@ namespace ServerLib
             if (args.Length > 0)
             {
                 //session.SendMessage("Incorrect data");
-                session.SendMessage("Usage history");
+                session.SendMessage("Login history");
                 return;
             }
-
-            //string data = File.ReadAllText("historia.txt");
 
             try
             {
 
                 using (var sr = new StreamReader("historia.txt"))
                 {
-
-
-
                     //string data = (sr, Encoding.Unicode);
                     // string[] separator = { " ", "\n", "\r", "\t" };
                     // string[] tab = data.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                     // session.SendMessage(data);
-                    foreach (var line in File.ReadLines("historia.txt"))
+                    lock(sr)
                     {
-                        session.SendMessage(line);
+                        foreach (var line in File.ReadLines("historia.txt"))
+                        {
+                            char[] separator = { ' ' };
+                            string[] tab = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                            if (tab[3] == session.Login)
+                            {
+                                session.SendMessage(line);
+                            }
+
+                        }
                     }
                 }
             }
