@@ -38,6 +38,10 @@ namespace ServerLib
                         args[1] = tempPasswd;
                         //session.Login = args[0];
                     }
+                    else
+                    {
+                        session.SendMessage("Usage chname [new_name] [new_name]");
+                    }
                 }
 
                 if (success)
