@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ChangePasswordCommand.cs" />
     <Compile Include="ChangeUserNameCommand.cs" />
+    <Compile Include="DeleteUserCommand.cs" />
     <Compile Include="SupportCommand .cs" />
     <Compile Include="HelpCommand.cs" />
     <Compile Include="LogoutCommand.cs" />
