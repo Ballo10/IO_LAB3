@@ -23,7 +23,7 @@ namespace ServerLib
             +"logout\n" 
             +"register [login] [password]\n" 
             + "delete [password] [password]\n"
-            + "ShowActiveUsersCommand\n"
+            + "activeusers\n"
             + "Strong [number]");
             
            

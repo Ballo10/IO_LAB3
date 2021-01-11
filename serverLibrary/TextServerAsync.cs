@@ -43,7 +43,7 @@ namespace ServerLib
             commands.Add("chpwd", new ChangePasswordCommand(this));
             commands.Add("chname", new ChangeUserNameCommand(this));
             commands.Add("delete", new DeleteUserCommand(this));
-            commands.Add("ShowActiveUsersCommand", new ShowActiveUsersCommand(this));
+            commands.Add("activeusers", new ShowActiveUsersCommand(this));
 
             Console.WriteLine("Started");
         }
