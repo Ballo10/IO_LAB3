@@ -17,6 +17,8 @@ namespace ServerLib
 
         private Dictionary<string, Command> commands = new Dictionary<string, Command>();
 
+        private List<string> activeUsers = new List<string>() { "aaaa", "asdf" };
+
         public delegate void ProcessClientDelegate(Session session);
 
         public TextServerAsync(IPAddress IP, int port) : base(IP, port)
@@ -40,6 +42,8 @@ namespace ServerLib
             commands.Add("logout", new LogoutCommand(this));
             commands.Add("chpwd", new ChangePasswordCommand(this));
             commands.Add("chname", new ChangeUserNameCommand(this));
+            commands.Add("delete", new DeleteUserCommand(this));
+            commands.Add("ShowActiveUsersCommand", new ShowActiveUsersCommand(this));
 
             Console.WriteLine("Started");
         }
@@ -108,6 +112,7 @@ namespace ServerLib
 
         public Dictionary<string, string> Database { get => database; }
         public Dictionary<string, Command> Commands { get => commands; }
+        public List<string> ActiveUsers { get => activeUsers; }
 
     }
 }

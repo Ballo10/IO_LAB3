@@ -50,8 +50,9 @@ namespace ServerLib
                             string[] temp = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
                             if (temp[0].Equals(session.Login))
                             {
-                                session.Login = args[0];
-                                System.IO.File.AppendAllText("templogin.txt", session.Login + ' ' + args[1] + '\n');
+                                session.Login = "";
+                                session.Active = false;
+                                 System.IO.File.AppendAllText("templogin.txt", session.Login);
                             }
                             else
                             {

@@ -22,7 +22,9 @@ namespace ServerLib
             +"history\n" 
             +"logout\n" 
             +"register [login] [password]\n" 
-            +"Strong [number]");
+            + "delete [password] [password]\n"
+            + "ShowActiveUsersCommand\n"
+            + "Strong [number]");
             
            
         }
