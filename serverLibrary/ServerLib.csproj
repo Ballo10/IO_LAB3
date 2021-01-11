@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangePasswordCommand.cs" />
+    <Compile Include="ChangePermissionsCommand.cs" />
     <Compile Include="ChangeUserNameCommand.cs" />
     <Compile Include="DeleteUserCommand.cs" />
     <Compile Include="ShowActiveUsersCommand.cs" />

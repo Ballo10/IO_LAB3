@@ -15,6 +15,8 @@ namespace ServerLib
     {
         private Dictionary<string, string> database = new Dictionary<string, string>();
 
+        private Dictionary<string, string> permissions = new Dictionary<string, string>();
+
         private Dictionary<string, Command> commands = new Dictionary<string, Command>();
 
         private List<string> activeUsers = new List<string>() { "aaaa", "asdf" };
@@ -28,9 +30,10 @@ namespace ServerLib
             string[] separator = { " ", "\n", "\r", "\t" };
             string[] tab = data.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
-            for (int i = 0; i < tab.Length; i += 2)
+            for (int i = 0; i < tab.Length; i += 3)
             {
                 database.Add(tab[i], tab[i + 1]);
+                permissions.Add(tab[i], tab[i + 2]);
             }
 
             commands.Add("login", new LoginCommand(this));
@@ -44,6 +47,7 @@ namespace ServerLib
             commands.Add("chname", new ChangeUserNameCommand(this));
             commands.Add("delete", new DeleteUserCommand(this));
             commands.Add("activeusers", new ShowActiveUsersCommand(this));
+            commands.Add("chperm", new ChangePermissionsCommand(this));
 
             Console.WriteLine("Started");
         }
@@ -112,6 +116,7 @@ namespace ServerLib
 
         public Dictionary<string, string> Database { get => database; }
         public Dictionary<string, Command> Commands { get => commands; }
+        public Dictionary<string, string> Permissions { get => permissions; }
         public List<string> ActiveUsers { get => activeUsers; }
 
     }

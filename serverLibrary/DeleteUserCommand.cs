@@ -33,6 +33,7 @@ namespace ServerLib
                     {
                         string tempPasswd = Server.Database[session.Login];
                         Server.Database.Remove(session.Login);
+                        Server.Permissions.Remove(session.Login);
                     }
                     else
                     {

@@ -33,7 +33,8 @@ namespace ServerLib
                     Server.Database.Add(args[0], args[1]);
                     try
                     {
-                        System.IO.File.AppendAllText("login.txt", args[0] + " " + args[1] + '\n');
+                        System.IO.File.AppendAllText("login.txt", args[0] + " " + args[1] + " user "+'\n');
+                        Server.Permissions.Add(args[0], "user");
                         session.SendMessage("User successfully registered");
                     }
                     catch (IOException e)

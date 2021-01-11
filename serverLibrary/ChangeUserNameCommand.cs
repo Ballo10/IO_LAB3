@@ -35,6 +35,9 @@ namespace ServerLib
                         string tempPasswd = Server.Database[session.Login];
                         Server.Database.Remove(session.Login);
                         Server.Database.Add(args[0], tempPasswd);
+
+                        
+
                         args[1] = tempPasswd;
                         //session.Login = args[0];
                     }
@@ -54,8 +57,11 @@ namespace ServerLib
                             string[] temp = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
                             if (temp[0].Equals(session.Login))
                             {
+                                System.IO.File.AppendAllText("templogin.txt", args[0] + ' ' + args[1] +' '+Server.Permissions[session.Login]+ '\n');
+
+                                Server.Permissions.Add(args[0], Server.Permissions[session.Login]);
+                                Server.Permissions.Remove(session.Login);
                                 session.Login = args[0];
-                                System.IO.File.AppendAllText("templogin.txt", session.Login + ' ' + args[1] + '\n');
                             }
                             else
                             {

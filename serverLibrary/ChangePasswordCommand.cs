@@ -42,7 +42,7 @@ namespace ServerLib
                             string[] temp = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
                             if (temp[0].Equals(session.Login))
                             {
-                                System.IO.File.AppendAllText("templogin.txt", session.Login + ' ' + args[1] + '\n');
+                                System.IO.File.AppendAllText("templogin.txt", session.Login + ' ' + args[1] +' '+ Server.Permissions[session.Login]+'\n');
                             }
                             else
                             {
