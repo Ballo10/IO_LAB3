@@ -15,22 +15,36 @@ namespace ServerLib
         }
         public override void execute(string[] args, Session session)
         {
-            lock(Server.Permissions)
+            string targetUsername = args[0];
+            string targetPerm = args[1];
+
+            if (!session.isLoggedIn())
             {
-                if(args.Length==2 && String.Compare(Server.Permissions[session.Login],"admin")==0)
+                session.SendMessage("You are not logged in");
+                return;
+            }
+
+            lock (Server.Database)
+            {
+                User currentUser = Server.Database[session.Login];
+
+                if(args.Length==2 && currentUser.Permission.Equals("admin"))
                 {
-                    if(Server.Permissions.ContainsKey(args[0]))
+
+                    if(Server.Database.ContainsKey(targetUsername))
                     {
-                        Server.Permissions[args[0]] = args[1];
+                        User targetUser = Server.Database[targetUsername];
+                        targetUser.Permission = targetPerm;
+
                         try
                         {
                             foreach (var line in File.ReadLines("login.txt"))
                             {
                                 string[] separators = { " ", "\n", "\r", "\t" };
                                 string[] temp = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                                if (temp[0].Equals(args[0]))
+                                if (temp[0].Equals(targetUsername))
                                 {
-                                    System.IO.File.AppendAllText("templogin.txt", args[0] + ' ' + Server.Database[args[0]] + ' ' + Server.Permissions[args[0]] + '\n');
+                                    System.IO.File.AppendAllText("templogin.txt", targetUsername + ' ' + targetUser.Password + ' ' + targetUser.Permission + '\n');
                                 }
                                 else
                                 {
@@ -55,7 +69,7 @@ namespace ServerLib
                         session.SendMessage("Nie ma takiego użytkownika");
                     }
                 }
-                else if(String.Compare(Server.Permissions[session.Login], "admin") != 0)
+                else if (!currentUser.Permission.Equals("admin"))
                 {
                     session.SendMessage("Access denied!");
                 }

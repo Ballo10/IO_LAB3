@@ -18,8 +18,7 @@ namespace ServerLib
         private TcpClient tcpClient;
         private NetworkStream netStream;
 
-        private bool active = false;
-        private string login = "";
+        private string login = null;
 
         public Session(TextServerAsync ts, TcpClient tcpClient)
         {
@@ -37,8 +36,21 @@ namespace ServerLib
             }
         }
 
+        public bool isLoggedIn()
+        {
+            return login != null;
+        }
+        public void notifyLogin(string login)
+        {
+            this.login = login;
+        }
+        public void notifyLogout()
+        {
+            login = null;
+        }
+
         public NetworkStream NetStream { get => netStream; }
-        public bool Active { get => active; set => active = value; }
-        public string Login { get => login; set => login = value; }
+        public string Login { get => login; }
+
     }
 }

@@ -30,11 +30,11 @@ namespace ServerLib
             {
                 if (!Server.Database.ContainsKey(args[0]))
                 {
-                    Server.Database.Add(args[0], args[1]);
+                    User user = new User(args[0], args[1], "user");
+                    Server.Database.Add(args[0], user);
                     try
                     {
                         System.IO.File.AppendAllText("login.txt", args[0] + " " + args[1] + " user "+'\n');
-                        Server.Permissions.Add(args[0], "user");
                         session.SendMessage("User successfully registered");
                     }
                     catch (IOException e)

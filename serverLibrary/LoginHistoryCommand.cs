@@ -25,6 +25,12 @@ namespace ServerLib
                 return;
             }
 
+            if (!session.isLoggedIn())
+            {
+                session.SendMessage("You are not logged in");
+                return;
+            }
+
             try
             {
 

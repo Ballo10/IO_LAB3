@@ -28,53 +28,62 @@ namespace ServerLib
                 session.SendMessage("Usage login [login] [password]");
                 return;
             }
-            if (session.Active)
-            {
-                session.SendMessage("You are already logged in ");
-                return;
-            }
 
-            bool success = false;
-
-            lock (Server.Database)
-            {
-                if (Server.Database.ContainsKey(args[0]))
-                {
-                    success = Server.Database[args[0]].Equals(args[1]);
-                }
-            }
-
+            string login = args[0];
+            string password = args[1];
 
             DateTime thisDay = DateTime.UtcNow.AddHours(1);
 
             String time = thisDay.ToString("dd-MM-yyyy HH:mm:ss");
             string line = "";
-            if (success)
-            {
-                session.SendMessage("Successful login");
-                session.Active = true;
-                session.Login = args[0];
-                line = "Successful user login: " + args[0] + " at: " + time + '\n';
 
-            }
-            else
+            lock (Server.Database)
             {
-                session.SendMessage("Login failed");
-                session.Login = args[0];
-                line = "Failed user login: " + args[0] + " at: " + time + '\n';
+                if (Server.Database.ContainsKey(login))
+                {
+                    bool passwordValid = Server.Database[login].Password.Equals(password);
 
-            }
+                    if (passwordValid)
+                    {
+                        lock (Server.ActiveUsers)
+                        {
+                            if (Server.ActiveUsers.ContainsKey(login))
+                            {
+                                session.SendMessage("You are already logged in ");
+                                return;
+                            }
+                            else
+                            {
+                                session.SendMessage("Successful login");
 
-            try
-            {
-                System.IO.File.AppendAllText("historia.txt", line);
+                                lock (session)
+                                {
+                                    session.notifyLogin(login);
+                                }
+                                
+                                Server.ActiveUsers[login] = session;
 
-            }
-            catch (IOException e)
-            {
-                session.SendMessage("The file could not be read");
-                File.Create("login.txt");
-                //Console.WriteLine(e.Message);
+                                line = "Successful user login: " + login + " at: " + time + '\n';
+                            }
+                        }
+                    }
+                    else
+                    {
+                        session.SendMessage("Login failed");
+                        line = "Failed user login: " + login + " at: " + time + '\n';
+                    }
+
+                    try
+                    {
+                        System.IO.File.AppendAllText("historia.txt", line);
+                    }
+                    catch (IOException e)
+                    {
+                        session.SendMessage("The file could not be read");
+                        File.Create("login.txt");
+                        //Console.WriteLine(e.Message);
+                    }
+                }
             }
         }
     }

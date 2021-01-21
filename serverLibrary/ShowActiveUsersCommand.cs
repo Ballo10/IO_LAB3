@@ -21,14 +21,16 @@ namespace ServerLib
                 return;
             }
 
-           string message = "";
+            string message = "";
 
-            foreach (var user in Server.ActiveUsers)
+            lock (Server.ActiveUsers)
             {
-                message += (user+"\n");
+                foreach (var user in Server.ActiveUsers.Keys)
+                {
+                    message += (user + "\n");
+                }
+                session.SendMessage(message);
             }
-            session.SendMessage(message);
-
         }
     }
 }

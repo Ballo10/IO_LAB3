@@ -20,15 +20,24 @@ namespace ServerLib
                 session.SendMessage("Usage logout");
                 return;
             }
-            if(session.Active)
+
+            lock (Server.ActiveUsers)
             {
-                session.Active = false;
-                session.Login = "";
-                session.SendMessage("Successfully logged out ");
-            }
-            else
-            {
-                session.SendMessage("Unable to log out. User not logged in.");
+                if (session.isLoggedIn())
+                {
+                    Server.ActiveUsers.Remove(session.Login);
+
+                    lock (session)
+                    {
+                        session.notifyLogout();
+                    }
+
+                    session.SendMessage("Successfully logged out ");
+                }
+                else
+                {
+                    session.SendMessage("Unable to log out. User not logged in.");
+                }
             }
         }
     }

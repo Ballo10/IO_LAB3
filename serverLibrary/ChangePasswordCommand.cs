@@ -22,14 +22,29 @@ namespace ServerLib
                 return;
             }
 
+            string oldPassword = args[0];
+            string newPassword = args[1];
+            string newPasswordConfirm = args[2];
+
+            if (!session.isLoggedIn())
+            {
+                session.SendMessage("You are not logged in");
+                return;
+            }
+
             bool success = false;
 
             lock (Server.Database)
             {
-                if (Server.Database[session.Login].Equals(args[0]))
+                User currentUser = Server.Database[session.Login];
+
+                if (currentUser.Password.Equals(oldPassword))
                 {
-                    success = args[1].Equals(args[2]);
-                    if(success) Server.Database[session.Login] = args[1];
+                    if (newPassword.Equals(newPasswordConfirm))
+                    {
+                        currentUser.Password = newPassword;
+                        success = true;
+                    }
                 }
 
                 if (success)
@@ -42,7 +57,7 @@ namespace ServerLib
                             string[] temp = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
                             if (temp[0].Equals(session.Login))
                             {
-                                System.IO.File.AppendAllText("templogin.txt", session.Login + ' ' + args[1] +' '+ Server.Permissions[session.Login]+'\n');
+                                System.IO.File.AppendAllText("templogin.txt", session.Login + ' ' + newPassword +' '+ currentUser.Permission +'\n');
                             }
                             else
                             {
@@ -61,7 +76,10 @@ namespace ServerLib
                         File.Create("login.txt");
                         //Console.WriteLine(e.Message);
                     }
-
+                }
+                else
+                {
+                    session.SendMessage("Password is invalid or new password confirmation doesn't match new password");
                 }
             }
         }

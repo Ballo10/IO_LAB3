@@ -13,13 +13,11 @@ namespace ServerLib
 {
     public class TextServerAsync : TextServer
     {
-        private Dictionary<string, string> database = new Dictionary<string, string>();
-
-        private Dictionary<string, string> permissions = new Dictionary<string, string>();
+        private Dictionary<string, User> database = new Dictionary<string, User>();
 
         private Dictionary<string, Command> commands = new Dictionary<string, Command>();
 
-        private List<string> activeUsers = new List<string>() { "aaaa", "asdf" };
+        private Dictionary<string, Session> activeUsers = new Dictionary<string, Session>();
 
         public delegate void ProcessClientDelegate(Session session);
 
@@ -32,8 +30,8 @@ namespace ServerLib
 
             for (int i = 0; i < tab.Length; i += 3)
             {
-                database.Add(tab[i], tab[i + 1]);
-                permissions.Add(tab[i], tab[i + 2]);
+                User user = new User(tab[i], tab[i + 1], tab[i + 2]);
+                database.Add(tab[i], user);
             }
 
             commands.Add("login", new LoginCommand(this));
@@ -44,10 +42,10 @@ namespace ServerLib
             commands.Add("support", new SupportCommand(this));
             commands.Add("logout", new LogoutCommand(this));
             commands.Add("chpwd", new ChangePasswordCommand(this));
-            commands.Add("chname", new ChangeUserNameCommand(this));
             commands.Add("delete", new DeleteUserCommand(this));
             commands.Add("activeusers", new ShowActiveUsersCommand(this));
             commands.Add("chperm", new ChangePermissionsCommand(this));
+            commands.Add("msg", new MessageCommand(this));
 
             Console.WriteLine("Started");
         }
@@ -108,16 +106,25 @@ namespace ServerLib
                         this.ProcessClient(session);
                     }
                     catch (SystemException) {
-                        
+                        lock (activeUsers)
+                        {
+                            if (session.isLoggedIn())
+                            {
+                                activeUsers.Remove(session.Login);
+                                lock (session)
+                                {
+                                    session.notifyLogout();
+                                }
+                            }
+                        }
                     }
                 });
             }
         }
 
-        public Dictionary<string, string> Database { get => database; }
+        public Dictionary<string, User> Database { get => database; }
         public Dictionary<string, Command> Commands { get => commands; }
-        public Dictionary<string, string> Permissions { get => permissions; }
-        public List<string> ActiveUsers { get => activeUsers; }
+        public Dictionary<string, Session> ActiveUsers { get => activeUsers; }
 
     }
 }
