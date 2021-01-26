@@ -24,8 +24,8 @@ namespace ServerLib
             +"register [login] [password]\n" //kazdy
             + "delete [password] [password]\n" 
             + "activeusers\n" //kazdy
-            + "Strong [number]"
-            + "chperm [user] [permission]"
+            + "Strong [number]\n"
+            + "chperm [user] [permission]\n"
             +"msg [receiver] [message]");
             
            
