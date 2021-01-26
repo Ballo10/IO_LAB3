@@ -22,10 +22,10 @@ namespace Client
             {
                 try
                 {
-                    Console.WriteLine("Podaj adres ip");
+                    Console.WriteLine("Enter the ip address");
                     ipAddress = Console.ReadLine();
 
-                    Console.WriteLine("Podaj port");
+                    Console.WriteLine("Enter the port number");
                     port = Convert.ToUInt16(Console.ReadLine());
 
                     tcpClient = new TcpClient(ipAddress, port);
@@ -33,12 +33,12 @@ namespace Client
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Błąd: " + e.Message);
-                    Console.WriteLine("Spróbuj ponownie.");
+                    Console.WriteLine("Error: " + e.Message);
+                    Console.WriteLine("Try again.");
                 }
             }
 
-            Console.WriteLine("Połączono pomyślnie.");
+            Console.WriteLine("Connected successfully.");
 
             Client client = new Client(ipAddress, port, tcpClient);
             client.Start();

@@ -66,7 +66,7 @@ namespace ServerLib
                     }
                     else
                     {
-                        session.SendMessage("Nie ma takiego użytkownika");
+                        session.SendMessage("There is no such user");
                     }
                 }
                 else if (!currentUser.Permission.Equals("admin"))
