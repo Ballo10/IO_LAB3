@@ -17,14 +17,16 @@ namespace ServerLib
         public override void execute(string[] args, Session session)
         {
             session.SendMessage("chpwd [old_password] [new_password] [new_password]\n" //kazdy
-            +"chname [new_name] [new_name]\n" //kazdy
             +"login [login] [password]\n"
             +"history\n" 
             +"logout\n" 
+            +"help\n"
             +"register [login] [password]\n" //kazdy
             + "delete [password] [password]\n" 
             + "activeusers\n" //kazdy
-            + "Strong [number]");
+            + "Strong [number]"
+            + "chperm [user] [permission]"
+            +"msg [receiver] [message]");
             
            
         }

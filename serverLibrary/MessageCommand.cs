@@ -39,7 +39,6 @@ namespace ServerLib
 
                 if (Server.ActiveUsers.ContainsKey(login))
                 {
-
                     Server.ActiveUsers[login].SendMessage("[" + session.Login + "]: " + message);
                 }
                 else
